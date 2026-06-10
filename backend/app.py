@@ -1,10 +1,10 @@
-from flask import Flask
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
-app = Flask(__name__)
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"Backend API Running")
 
-@app.route('/')
-def home():
-    return "Backend API Running"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+server = HTTPServer(("0.0.0.0", 5000), Handler)
+server.serve_forever()
