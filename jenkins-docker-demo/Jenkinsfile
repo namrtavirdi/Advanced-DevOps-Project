@@ -16,7 +16,7 @@ pipeline {
                 bat '''
                 docker stop my-nginx-container >nul 2>&1
                 docker rm my-nginx-container >nul 2>&1
-                docker run -d --name my-nginx-container -p 8080:80 my-nginx-app
+                docker run -d --name my-nginx-container -p 8081:80 my-nginx-app
                 '''
             }
         }
