@@ -14,10 +14,10 @@ pipeline {
         stage('Run Container') {
             steps {
                 bat '''
-                docker stop my-nginx-container
-                docker rm my-nginx-container
+                docker stop my-nginx-container >nul 2>&1
+                docker rm my-nginx-container >nul 2>&1
+                docker run -d --name my-nginx-container -p 8080:80 my-nginx-app
                 '''
-                bat 'docker run -d --name my-nginx-container -p 8080:80 my-nginx-app'
             }
         }
 
